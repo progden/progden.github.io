@@ -1,37 +1,54 @@
-## Welcome to GitHub Pages
+## vim for code review
 
-You can use the [editor on GitHub](https://github.com/progden/progden.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+從結論上說使用 vim 能有效的在程式內容中移動、選取、編輯，進一步透過建立、執行巨集，搭配 IDE 的快捷鍵進行跨檔案的移動(vim 裡面加上 plugin 也是可以達到)，是可以很有效的進行程式碼修改。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+基於此將常見的開發情境加入鍵盤快捷鍵，建立基於樣板的新檔案、重構、執行測試、編譯、版本控制等，完全可以更有效地進行開發。
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+## 在程式碼中移動
 
-# Header 1
-## Header 2
-### Header 3
+首先是覺得應該要使用英文輸入法(不只是新注音的英文模式)。
 
-- Bulleted
-- List
+常用的移動當然是 j、k 做一般的上下移動，與 w、e、b 的同一行的移動。
 
-1. Numbered
-2. List
+再來是 {、} 段落的上下移動(by 空白行)，這個時候開始發現程式中間留空行的重要性，第一時間在視覺上的分隔，又可以讓vim的移動更快。
 
-**Bold** and _Italic_ and `Code` text
+當移動變快的時候 zz 就很重要了，特別是當游標移動到螢幕的最上下邊界時，可以讓目前游標的所在位置，回歸到畫面中間
 
-[Link](url) and ![Image](src)
-```
+H、L、M 也有一點效果，只是一行一行的移動有點難改習慣。
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+接下來... 進階點的移動要等搜尋時說起
 
-### Jekyll Themes
+### 一般模式 (Normal mode)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/progden/progden.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+| 鍵盤                 | 說明                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| h、←                 | 游標向左移動                                                 |
+| j、↓、+、\<enter>    | 游標向下移動<br />+、\<enter> 會到下一行第一個非空白字       |
+| k、↑ 、-             | 游標向上移動<br />- 會到上一行第一個非空白字                 |
+| l、→                 | 游標向右移動                                                 |
+| 0、^、$、_           | 游標向行首、行末移動 (同正規) <br />註：0 是行首，^、_ 是非空白字元行首，$ 是對應 0 的行末 |
+| %                    | 會在對應的括胡來回移動 { }、[ ]、( )                         |
+| (、)                 | 向前、後一個句子(sentence)移動 (以英文的句子結尾 .!? 當作結尾)，寫程式...或者中文句子基本沒有作用。 |
+| {、}                 | 向前、後一個段落(paragraph)移動，以空行來區分                |
+| [[、]]               | 向前、後一個節(section)移動                                  |
+| H、M、L              | 移動到螢幕第一行、中間行、最末行                             |
+| \<n>G                | 移動到第 n 行                                                |
+| G                    | 移動到檔案的最後一行                                         |
+| w、b、e<br />W、B、E | 下一個字首、倒退一個字首、下一個字尾<br />大寫部分是包括空格 |
+| zz                   | 將目前游標位置移動到畫面中間                                 |
 
-### Support or Contact
+### 一般模式 (Normal mode) 中編輯
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+| 鍵盤               | 說明                                          |
+| ------------------ | --------------------------------------------- |
+| J                  | 將下一行連接到目前行末 (Join)                 |
+| ~                  | 大小寫轉換                                    |
+| \<ctrl>a、\<ctrl>x | 加、減游標位置的數字<br />可以處理 8、16 進位 |
+| >、<               | 縮排、取消縮排                                |
+|                    |                                               |
+|                    |                                               |
+
+
+待補充
